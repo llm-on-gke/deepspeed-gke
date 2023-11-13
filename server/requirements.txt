@@ -1,1 +1,2 @@
-mii>=0.1.0
+deepspeed-mii
+huggingface_hub
