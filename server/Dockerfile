@@ -1,5 +1,5 @@
 
-FROM nvidia/cuda:11.2.2-base-ubuntu20.04
+FROM nvidia/cuda:11.6.2-runtime-ubuntu20.04
 WORKDIR /workspace
 
 COPY serve.py ./
