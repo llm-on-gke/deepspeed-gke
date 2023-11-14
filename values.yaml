@@ -1037,7 +1037,8 @@ volumePermissions:
     ## limits:
     ##    cpu: 100m
     ##    memory: 128Mi
-    limits: {}
+    limits: 
+       nvidia.com/gpu: 1
     ## Examples:
     ## requests:
     ##    cpu: 100m
