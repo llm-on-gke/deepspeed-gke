@@ -24,7 +24,7 @@ spec:
         cloud.google.com/gke-accelerator: nvidia-tesla-t4
       containers:
         - name: ds-mii-inference-server
-          image: us-east1-docker.pkg.dev/rick-vertex-ai/triton-llm/deepspeed-mii-:latest
+          image: us-east1-docker.pkg.dev/rick-vertex-ai/triton-llm/deepspeed-mii:latest
           imagePullPolicy: IfNotPresent
 
           resources:
@@ -63,8 +63,6 @@ spec:
             successThreshold: 1
             failureThreshold: 3
           volumeMounts:
-            - mountPath: /home/triton-server/.cache
-              name: cache
             - mountPath: /dev/shm
               name: dshm
 
