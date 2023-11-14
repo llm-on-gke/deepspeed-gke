@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: triton-inference-server
+        app: ds-mii-inference-server
     spec:
       volumes:
        - name: cache
@@ -24,19 +24,13 @@ spec:
         cloud.google.com/gke-accelerator: nvidia-tesla-t4
       containers:
         - name: ds-mii-inference-server
-          image: us-east1-docker.pkg.dev/rick-vertex-ai/triton-llm/llama2:latest
+          image: us-east1-docker.pkg.dev/rick-vertex-ai/triton-llm/deepspeed-mii-:latest
           imagePullPolicy: IfNotPresent
 
           resources:
             limits:
               nvidia.com/gpu: 2
           env:
-            - name: LD_PRELOAD
-              value: ''
-            - name: TRANSFORMERS_CACHE
-              value: /home/triton-server/.cache
-            - name: PYTHONPATH
-              value: /home/triton-server/app/.local/lib/python3.10/site-packages:/opt/tritonserver/backends/python
             - name: shm-size
               value: 1g
             - name: HUGGING_FACE_TOKEN
@@ -44,14 +38,7 @@ spec:
                 secretKeyRef:
                   name: llama2
                   key: HF_TOKEN
-            - name: NCCL_IGNORE_DISABLED_P2P
-              value: '1'
-          args: ["tritonserver", "--model-store=gs://triton-inference-llm-repos/model_repository",
-                 "--strict-model-config=False",
-                 "--log-verbose=1",
-                 "--allow-gpu-metrics=True"]
-
-          workingDir: /home/triton-server/app
+          workingDir: /workspace
           ports:
             - containerPort: 8000
               name: http
@@ -75,9 +62,6 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             failureThreshold: 3
-
-          securityContext:
-            runAsUser: 1000
           volumeMounts:
             - mountPath: /home/triton-server/.cache
               name: cache
@@ -88,7 +72,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: triton-inference-server
+  name: deepspeed-inference-server
   annotations:
     cloud.google.com/neg: '{"ingress": true}'
   labels:
@@ -112,10 +96,10 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: triton-external
+  name: deepspeed-external
   annotations:
     kubernetes.io/ingress.class: "gce"
-    kubernetes.io/ingress.global-static-ip-name: "ingress-triton"
+    kubernetes.io/ingress.global-static-ip-name: "ingress-deepspeed"
 spec:
   rules:
   - http:
@@ -124,7 +108,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: triton-inference-server
+            name: deepspeed-inference-server
             port:
               number: 8000
              
