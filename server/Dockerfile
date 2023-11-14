@@ -14,6 +14,8 @@ RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
 RUN python3 -m pip install  --user --upgrade pip
 RUN python3 -m pip install  --user -r requirements.txt
+ENV PATH=$PATH:/root/.local/bin
+
 ENTRYPOINT ["python3", "serve.py"]
 
 
