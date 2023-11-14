@@ -4,4 +4,4 @@ WORKDIR /app
 COPY requirements.txt ./
 RUN pip install  -r requirements.txt
 COPY serve.py ./
-ENTRYPOINT ["python", "serve.py"]
+RUN git clone https://github.com/microsoft/DeepSpeedExamples.git
