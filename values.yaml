@@ -277,7 +277,8 @@ client:
   ## @param client.resources.requests The requested resources for the client containers
   ##
   resources:
-    limits: {}
+    limits: 
+       nvidia.com/gpu: 1
     requests: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -367,7 +368,8 @@ client:
   ## @param client.nodeSelector Node labels for Client pods assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector: 
+      cloud.google.com/gke-accelerator: nvidia-tesla-t4
   ## @param client.tolerations Tolerations for Client pods assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   ##
@@ -624,7 +626,8 @@ worker:
   ## @param worker.resources.requests The requested resources for the client containers
   ##
   resources:
-    limits: {}
+    limits: 
+       nvidia.com/gpu: 1
     requests: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -717,8 +720,7 @@ worker:
   ## @param worker.nodeSelector Node labels for Worker pods assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: 
-     cloud.google.com/gke-accelerator: nvidia-tesla-t4
+  nodeSelector: {}
   ## @param worker.tolerations Tolerations for Worker pods assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   ##
@@ -1035,8 +1037,7 @@ volumePermissions:
     ## limits:
     ##    cpu: 100m
     ##    memory: 128Mi
-    limits: 
-       nvidia.com/gpu: 1
+    limits: {}
     ## Examples:
     ## requests:
     ##    cpu: 100m
