@@ -33,8 +33,6 @@ spec:
           env:
             - name: shm-size
               value: 1g
-            - name: PATH
-              value: $PATH:/root/.local/bin
             - name: HUGGING_FACE_TOKEN
               valueFrom:
                 secretKeyRef:
