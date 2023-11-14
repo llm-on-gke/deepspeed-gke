@@ -1,3 +1,2 @@
 deepspeed-mii
 huggingface_hub
-deepspeed
