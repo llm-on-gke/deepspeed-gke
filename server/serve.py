@@ -1,5 +1,6 @@
 import mii
 import huggingface_hub
+import os
 
 huggingface_hub.login(token=os.environ.get('HUGGING_FACE_TOKEN', '')) ## Add your HF credentials
 
