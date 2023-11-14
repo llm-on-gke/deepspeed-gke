@@ -277,8 +277,7 @@ client:
   ## @param client.resources.requests The requested resources for the client containers
   ##
   resources:
-    limits: 
-        nvidia.com/gpu: 1
+    limits: {}
     requests: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -368,8 +367,7 @@ client:
   ## @param client.nodeSelector Node labels for Client pods assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: 
-      cloud.google.com/gke-accelerator: nvidia-tesla-t4
+  nodeSelector: {}
   ## @param client.tolerations Tolerations for Client pods assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   ##
