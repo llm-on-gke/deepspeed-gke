@@ -1,5 +1,5 @@
 
-FROM nvidia/cuda:11.6.2-runtime-ubuntu20.04
+FROM nvidia/cuda:11.6.2-runtime-ubuntu20.04 as builder
 
 WORKDIR /workspace
 
@@ -14,8 +14,13 @@ RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
 RUN python3 -m pip install  --user --upgrade pip
 RUN python3 -m pip install  --user -r requirements.txt
-ENV PATH=$PATH:/root/.local/bin
 
+FROM nvidia/cuda:11.6.2-base-ubuntu20.04
+WORKDIR /root
+COPY --from=builder /root/.local/bin .local/bin
+ENV PATH=$PATH:/root/.local/bin
+WORKDIR /workspace
+COPY --from=builder /workspace/serve.py serve.py
 ENTRYPOINT ["python3", "serve.py"]
 
 
