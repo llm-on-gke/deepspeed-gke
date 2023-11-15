@@ -627,7 +627,7 @@ worker:
   ##
   resources:
     limits: 
-       nvidia.com/gpu: 1
+      nvidia.com/gpu: 1
     requests: {}
   ## Configure Pods Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
@@ -720,7 +720,8 @@ worker:
   ## @param worker.nodeSelector Node labels for Worker pods assignment
   ## ref: https://kubernetes.io/docs/user-guide/node-selection/
   ##
-  nodeSelector: {}
+  nodeSelector: 
+      cloud.google.com/gke-accelerator: nvidia-tesla-t4
   ## @param worker.tolerations Tolerations for Worker pods assignment
   ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   ##
