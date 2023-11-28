@@ -13,3 +13,4 @@ kubectl create secret generic llama2 --from-literal="HF_TOKEN=$HF_TOKEN" -n trit
 kubectl apply -f llama2-gke-deploy.yaml -n triton
 ```
 
+helm install deepspeed -f values.yaml oci://registry-1.docker.io/bitnamicharts/deepspeed
