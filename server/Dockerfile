@@ -4,4 +4,5 @@ WORKDIR /workspace
 COPY requirements.txt ./
 RUN pip install  -r requirements.txt
 COPY serve.py ./
-RUN git clone https://github.com/microsoft/DeepSpeedExamples.git 
+WORKDIR /deepspeed
+RUN git clone https://github.com/microsoft/DeepSpeedExamples.git
