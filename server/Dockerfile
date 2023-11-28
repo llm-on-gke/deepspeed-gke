@@ -5,5 +5,3 @@ COPY requirements.txt ./
 RUN pip install  -r requirements.txt
 COPY serve.py ./
 
-WORKDIR /DeepSpeedExamples
-RUN git clone https://github.com/microsoft/DeepSpeedExamples.git /DeepSpeedExamples
