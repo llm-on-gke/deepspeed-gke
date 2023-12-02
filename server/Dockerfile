@@ -62,7 +62,7 @@ WORKDIR /app
 RUN COPY requirements ./
 
 RUN pip install -r requirements.txt
-
+RUN git clone https://github.com/microsoft/DeepSpeedExamples
 USER 1001
 ENTRYPOINT [ "/opt/bitnami/scripts/deepspeed/entrypoint.sh" ]
 CMD [ "python" ]
