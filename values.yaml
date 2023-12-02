@@ -98,7 +98,7 @@ source:
   type: "configmap"
   ## @param source.launchCommand deepspeed command to run over the project
   ##
-  launchCommand: "git clone https://github.com/microsoft/DeepSpeedExamples /app/DeepSpeedExamples"
+  launchCommand: ""
   ## @param source.configMap List of files of the project
   ##
   configMap: {}
@@ -211,10 +211,10 @@ client:
   annotations: {}
   ## @param client.command Override default container command (useful when using custom images)
   ##
-  command: []
+  command: ["python"]
   ## @param client.args Override default container args (useful when using custom images)
   ##
-  args: []
+  args: ["-c","import deepspeed; deepspeed.__version__"]
   ## @param client.terminationGracePeriodSeconds Client termination grace period (in seconds)
   ##
   terminationGracePeriodSeconds: ""
