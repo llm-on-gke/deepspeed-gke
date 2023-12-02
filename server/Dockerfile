@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: APACHE-2.0
 #FROM docker.io/bitnami/minideb:bullseye
 #FROM europe-docker.pkg.dev/vertex-ai/training/pytorch-gpu.1-12.py310:latest
-FROM nvidia/cuda:11.7.1-devel-ubuntu18.04
+FROM debian:bullseye-slim
 ARG TARGETARCH
 
 LABEL com.vmware.cp.artifact.flavor="sha256:1e1b4657a77f0d47e9220f0c37b9bf7802581b93214fff7d1bd2364c8bf22e8e" \
