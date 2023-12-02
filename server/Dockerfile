@@ -59,7 +59,7 @@ ENV APP_VERSION="0.12.3" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/python/bin:$PATH"
 
 WORKDIR /app
-RUN COPY requirements ./
+COPY requirements ./
 
 RUN pip install -r requirements.txt
 RUN git clone https://github.com/microsoft/DeepSpeedExamples
