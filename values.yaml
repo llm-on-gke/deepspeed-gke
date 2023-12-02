@@ -72,8 +72,8 @@ diagnosticMode:
 ## @param image.pullSecrets Specify docker-registry secret names as an array
 ##
 image:
-  registry: #us-east1-docker.pkg.dev
-  repository: #rick-vertex-ai/triton-llm/deepspeed-mii
+  registry: us-east1-docker.pkg.dev
+  repository: rick-vertex-ai/triton-llm/deepspeed-mii
   tag: latest
   digest: ""
   ## Specify a imagePullPolicy
