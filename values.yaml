@@ -211,10 +211,10 @@ client:
   annotations: {}
   ## @param client.command Override default container command (useful when using custom images)
   ##
-  command: ["python"]
+  command: []
   ## @param client.args Override default container args (useful when using custom images)
   ##
-  args: ["-c","import deepspeed; deepspeed.__version__"]
+  args: []
   ## @param client.terminationGracePeriodSeconds Client termination grace period (in seconds)
   ##
   terminationGracePeriodSeconds: ""
