@@ -1,2 +1,6 @@
+transformers
+accelerate
+rouge_score 
+deepspeed
 deepspeed-mii
 huggingface_hub
