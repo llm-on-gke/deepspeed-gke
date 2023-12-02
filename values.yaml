@@ -98,7 +98,7 @@ source:
   type: "configmap"
   ## @param source.launchCommand deepspeed command to run over the project
   ##
-  launchCommand: ""
+  launchCommand: "git clone https://github.com/microsoft/DeepSpeedExamples /app/DeepSpeedExamples"
   ## @param source.configMap List of files of the project
   ##
   configMap: {}
