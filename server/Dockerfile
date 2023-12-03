@@ -45,9 +45,6 @@ RUN apt-get autoremove --purge -y curl && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN apt-get update && apt-get install git
 
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
-
 RUN useradd -r -u 1001 -g root deepspeed
 RUN mkdir /.local && chmod g+rwX /.local
 
@@ -71,6 +68,8 @@ ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:$LD_LIBRARY_PA
 ENV LD_PRELOAD=""
 
 WORKDIR /deepspeed
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
 
 RUN git clone https://github.com/microsoft/DeepSpeedExamples
 USER 1001
