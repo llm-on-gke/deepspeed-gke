@@ -70,7 +70,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:$LD_LIBRARY_PATH
 ENV LD_PRELOAD=""
 
-WORKDIR /app
+WORKDIR /deepspeed
 
 RUN git clone https://github.com/microsoft/DeepSpeedExamples
 USER 1001
