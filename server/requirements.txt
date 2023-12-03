@@ -2,5 +2,5 @@ transformers
 accelerate
 rouge_score 
 huggingface_hub
-deepspeed
+deepspeed=0
 deepspeed-mii

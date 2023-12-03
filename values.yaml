@@ -301,7 +301,7 @@ client:
   ## @param client.containerSecurityContext.seccompProfile.type Set Client container's Security Context seccomp profile
   ##
   containerSecurityContext:
-    enabled: true
+    enabled: false
     runAsUser: 1001
     runAsGroup: 1001
     runAsNonRoot: true
