@@ -21,7 +21,7 @@ print_welcome_page
 # This container supports arbitrary UIDs, therefore we have do it dynamically
 if ! am_i_root; then
     export LNAME="deepspeed"
-    export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
+    #export LD_PRELOAD="/opt/bitnami/common/lib/libnss_wrapper.so"
     if [[ -f "$LD_PRELOAD" ]]; then
         info "Configuring libnss_wrapper"
         NSS_WRAPPER_PASSWD="$(mktemp)"
