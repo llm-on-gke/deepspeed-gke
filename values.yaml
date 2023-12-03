@@ -304,10 +304,10 @@ client:
     enabled: true
     runAsUser: 1001
     runAsGroup: 1001
-    runAsNonRoot: false
-    privileged: true
-    readOnlyRootFilesystem: false
-    allowPrivilegeEscalation: true
+    runAsNonRoot: true
+    privileged: false
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
     capabilities:
       drop: ["ALL"]
     seccompProfile:

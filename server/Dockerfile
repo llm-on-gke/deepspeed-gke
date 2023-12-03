@@ -49,7 +49,7 @@ RUN useradd -r -u 1001 -g root deepspeed
 RUN mkdir /.local && chmod g+rwX /.local
 
 COPY rootfs /
-RUN mkdir /app /.cache && mkdir -p /home/deepspeed/.local && mkdir -p /home/deepspeed/.triton && mkdir -p /home/deepspeed/.ssh && mkdir /home/deepspeed/.cache && ln -s /home/deepspeed/.local /opt/bitnami/deepspeed && ln -s /home/deepspeed/.ssh /opt/bitnami/deepspeed && ln -s /home/deepspeed/.cache /opt/bitnami/deepspeed && chmod g+rwX /app /.cache /home/deepspeed/.cache /home/deepspeed/.local
+RUN mkdir /app /.cache && mkdir -p /home/deepspeed/.local && mkdir -p /home/deepspeed/.triton && mkdir -p /home/deepspeed/.ssh && mkdir /home/deepspeed/.cache && ln -s /home/deepspeed/.local /opt/bitnami/deepspeed && ln -s /home/deepspeed/.ssh /opt/bitnami/deepspeed && ln -s /home/deepspeed/.cache /opt/bitnami/deepspeed &&ln -s /home/deepspeed/.triton /opt/bitnami/deepspeed && chmod g+rwX /app /.cache /home/deepspeed/.cache /home/deepspeed/.local /home/deepspeed/.triton
 
 ENV APP_VERSION="0.12.3" \
     BITNAMI_APP_NAME="deepspeed" \
@@ -69,7 +69,6 @@ ENV LD_PRELOAD=""
 
 WORKDIR /deepspeed
 COPY requirements.txt ./
-
 RUN pip install -r requirements.txt
 
 RUN git clone https://github.com/microsoft/DeepSpeedExamples
