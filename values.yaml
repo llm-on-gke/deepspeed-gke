@@ -73,7 +73,7 @@ diagnosticMode:
 ##
 image:
   registry: us-east1-docker.pkg.dev
-  repository: rick-vertex-ai/triton-llm/deepspeed-mii
+  repository: rick-vertex-ai/gke-llm/deepspeed-mii
   tag: latest
   digest: ""
   ## Specify a imagePullPolicy
