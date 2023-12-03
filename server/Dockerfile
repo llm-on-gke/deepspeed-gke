@@ -44,6 +44,10 @@ RUN apt-get autoremove --purge -y curl && \
     apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN apt-get update && apt-get install git
+
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
 RUN useradd -r -u 1001 -g root deepspeed
 RUN mkdir /.local && chmod g+rwX /.local
 
@@ -59,10 +63,6 @@ ENV APP_VERSION="0.12.3" \
     LDFLAGS="-Wl,-rpath: /opt/bitnami/python/lib -L/opt/bitnami/python/lib -Wl,-rpath: /opt/bitnami/common/lib -L/opt/bitnami/common/lib" \
     LD_LIBRARY_PATH="/opt/bitnami/python/lib:/opt/bitnami/common/lib:${LD_LIBRARY_PATH}" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/python/bin:$PATH"
-
-COPY requirements.txt ./
-
-RUN pip install -r requirements.txt
 
 ENV PATH=/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 ENV NVIDIA_VISIBLE_DEVICES=all
