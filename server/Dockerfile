@@ -68,7 +68,9 @@ ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:$LD_LIBRARY_PA
 ENV LD_PRELOAD=""
 
 WORKDIR /deepspeed
-
+RUN wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-debian11-12-3-local_12.3.1-545.23.08-1_amd64.deb
+ && dpkg -i cuda-repo-debian11-12-3-local_12.3.1-545.23.08-1_amd64.deb && cp /var/cuda-repo-debian11-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
+ && add-apt-repository contrib && apt-get update && apt-get -y install cuda-toolkit-12-3
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
