@@ -49,6 +49,7 @@ RUN mkdir /.local && chmod g+rwX /.local
 
 COPY rootfs /
 RUN mkdir /app /.cache && mkdir -p /home/deepspeed/.local && mkdir -p /home/deepspeed/.ssh && mkdir /home/deepspeed/.cache && ln -s /home/deepspeed/.local /opt/bitnami/deepspeed && ln -s /home/deepspeed/.ssh /opt/bitnami/deepspeed && ln -s /home/deepspeed/.cache /opt/bitnami/deepspeed && chmod g+rwX /app /.cache /home/deepspeed/.cache /home/deepspeed/.local
+RUN mkdir -p /home/deepspeed/.triton && chmod g+rwX /home/deepspeed/.triton
 ENV APP_VERSION="0.12.3" \
     BITNAMI_APP_NAME="deepspeed" \
     CFLAGS="-s -I/opt/bitnami/python/include -I/opt/bitnami/common/include" \
@@ -59,16 +60,18 @@ ENV APP_VERSION="0.12.3" \
     LD_LIBRARY_PATH="/opt/bitnami/python/lib:/opt/bitnami/common/lib:${LD_LIBRARY_PATH}" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/python/bin:$PATH"
 
+COPY requirements.txt ./
+
+RUN pip install -r requirements.txt
+
 ENV PATH=/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64:$LD_LIBRARY_PATH
 ENV LD_PRELOAD=""
 
-WORKDIR /deepspeed
-COPY requirements.txt ./
+WORKDIR /app
 
-RUN pip install -r requirements.txt
 RUN git clone https://github.com/microsoft/DeepSpeedExamples
 USER 1001
 ENTRYPOINT [ "/opt/bitnami/scripts/deepspeed/entrypoint.sh" ]
