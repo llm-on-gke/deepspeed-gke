@@ -93,6 +93,13 @@ client:
 ###
 ```
 worker:
+  ## @param worker.enabled Enable Worker deployment
+  ##
+  enabled: true
+  ## @param worker.slotsPerNode Number of slots available per worker node
+  ##
+  slotsPerNode: 1
+   replicaCount: 2
    resources:
     limits: 
        nvidia.com/gpu: 1
