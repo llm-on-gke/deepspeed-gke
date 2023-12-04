@@ -74,14 +74,14 @@ Make sure the build is succesful and container image created at the artifactory 
 ## Deploy deepspeed helmchart
 
 Check and update the values.yaml file,
-###
+### Container images
 ```
 image:
   registry: us-east1-docker.pkg.dev
-  repository: rick-vertex-ai/gke-llm/deepspeed-mii
+  repository: PROJECT_ID/gke-llm/deepspeed-mii
   tag: latest
 ```
-###
+### Update Client/Controller settings
 ```
 client:
    resources:
@@ -90,7 +90,7 @@ client:
    nodeSelector: 
       cloud.google.com/gke-accelerator: nvidia-tesla-t4
 ```
-###
+### Update worker settings
 ```
 worker:
   ## @param worker.enabled Enable Worker deployment
