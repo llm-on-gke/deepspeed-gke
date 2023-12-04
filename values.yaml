@@ -11,6 +11,10 @@ client:
   ##
   ## @param client.command Override default container command (useful when using custom images)
   ##
+  extraEnvVars: 
+     - name: sshm-size
+       value: 1g
+
   command: []
   ## @param client.args Override default container args (useful when using custom images)
   ##
@@ -42,7 +46,9 @@ worker:
   ##   - name: FOO
   ##     value: "bar"
   ##
-  extraEnvVars: []
+  extraEnvVars:  
+    - name: sshm-size
+      value: 1g
   ## @param worker.command Override default container command (useful when using custom images)
   ##
   command: []

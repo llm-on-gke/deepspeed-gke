@@ -5,8 +5,8 @@ steps:
   args:
     - -c
     - |
-      DOCKER_BUILDKIT=1 docker build . -t us-east1-docker.pkg.dev/rick-vertex-ai/gke-llm/deepspeed-mii:latest  \
-      && docker push us-east1-docker.pkg.dev/rick-vertex-ai/gke-llm/deepspeed-mii:latest 
+      DOCKER_BUILDKIT=1 docker build . -t us-east1-docker.pkg.dev/$PROJECT_ID/gke-llm/deepspeed-mii:latest  \
+      && docker push us-east1-docker.pkg.dev/$PROJECT_ID/gke-llm/deepspeed-mii:latest 
  
 images:
-- 'us-east1-docker.pkg.dev/rick-vertex-ai/gke-llm/deepspeed-mii:latest'
+- 'us-east1-docker.pkg.dev/$PROJECT_ID/gke-llm/deepspeed-mii:latest'
