@@ -57,9 +57,12 @@ Alternatively, you can choose to use nvidia-l4 1 GPU which can be us-central1 wi
 
 
 ## Build DeepSpeed Container Image
-You will need to build your own Container image
+Among all the options available to provvision DeepSpeed, Bitnami DeepSpeed Helmchart included as  component of VMWare Tanzu Application Catalog, is easist to understand and with one single place values.yaml to config both client(controller) and workers.
+Unfortunately, from our tests, current GKE versions is incompatible with the default container image from the helmchart, bitnami/deepspeed:0.12.3-debian-11-r2, the symptom is GPU not found inside the container provisioned from default image from https://github.com/bitnami/containers/blob/main/bitnami/deepspeed/0/debian-11/Dockerfile. 
 
-Update the artifactory repository to store container image in build/cloudbuild.yaml file, 
+To build the Container image that can run in GKE, we need to build customized image
+
+Update the artifactory repository to store container image in build/cloudbuild.yaml file, replace the Artifact repository path gke-llm, create the repo if it does not exit yet 
 
 Then run the following command
 ```
