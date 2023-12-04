@@ -33,6 +33,7 @@ client:
     enabled: false
   nodeSelector: 
       cloud.google.com/gke-accelerator: nvidia-tesla-t4
+
 worker:
   ## @param worker.enabled Enable Worker deployment
   ##
