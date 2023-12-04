@@ -110,12 +110,26 @@ helm install deepspeed -f values.yaml oci://registry-1.docker.io/bitnamicharts/d
 
 
 ## Validation and tests:
+Check the client and worker pods are running without issue,
 
+Then exec into the client(cluster) pod, and kick off a text-generation inference
+
+kubectl exec -it client-XXXXX -- bash
+
+When it is the shell prompt, run the following sample test,
+```
+cd /deepspeed/DeepSpeedExamples/inference/huggingface/text-generation
+deepspeed --num_gpus 1 inference-test.py --model facebook/opt-125m --batch-size=2
+```
 
 ## Common issues:
 
-CUDA initialization, GPU not found issues:
-
+CUDA initialization, GPU not found issues, the issues can be shown by running the following command:
+```
+python
 import torch
 available_gpus = [torch.cuda.device(i) for i in range(torch.cuda.device_count())]
 available_gpus
+[]
+```
+This occurs due to GKE/Kubernetes version incompatible with image provided in Helmchart, check the build folder and test other builds. 
