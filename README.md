@@ -72,26 +72,37 @@ Make sure the build is succesful and container image created at the artifactory 
 
 Check and update the values.yaml file,
 ###
+```
 image:
   registry: us-east1-docker.pkg.dev
   repository: rick-vertex-ai/gke-llm/deepspeed-mii
   tag: latest
-
+```
 ###
+```
 client:
    resources:
     limits: 
        nvidia.com/gpu: 1
    nodeSelector: 
       cloud.google.com/gke-accelerator: nvidia-tesla-t4
-
+```
 ###
+```
 worker:
    resources:
     limits: 
        nvidia.com/gpu: 1
    nodeSelector: 
       cloud.google.com/gke-accelerator: nvidia-tesla-t4
+
+```
+
+For a full list of DeepSpeed config parameters and advanced customization, please refer to:
+
+https://artifacthub.io/packages/helm/bitnami/deepspeed
+
+https://github.com/bitnami/charts/blob/main/bitnami/deepspeed/values.yaml
 
 Finally run the following command to deploy DeepSpeed helmchart:
 
